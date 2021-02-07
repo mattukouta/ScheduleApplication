@@ -3,7 +3,7 @@ package dependencies
 object Dep {
     private object Version {
         const val kotlin = "1.4.21"
-        const val hilt = "2.28-alpha"
+        const val hilt = "2.31-alpha"
         const val androidHilt = "1.0.0-alpha03"
         const val lifecycle = "2.2.0"
         const val room = "2.2.6"
