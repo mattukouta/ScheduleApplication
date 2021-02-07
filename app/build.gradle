@@ -5,6 +5,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
@@ -34,6 +35,9 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
@@ -57,6 +61,9 @@ dependencies {
     kapt Dep.AndroidX.Dagger.hiltAndroidCompiler
     implementation Dep.AndroidX.Dagger.hiltLifecycleViewModel
     kapt Dep.AndroidX.Dagger.hiltCompiler
+    implementation Dep.AndroidX.Navigation.navigationFragment
+    implementation Dep.AndroidX.Navigation.navigationRuntime
+    implementation Dep.AndroidX.Navigation.navigationUI
 
     implementation Dep.Kotlin.stdlib
     implementation Dep.Kotlin.Coroutine.coroutineCore

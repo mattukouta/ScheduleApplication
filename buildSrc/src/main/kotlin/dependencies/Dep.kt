@@ -7,6 +7,7 @@ object Dep {
         const val androidHilt = "1.0.0-alpha03"
         const val lifecycle = "2.2.0"
         const val room = "2.2.6"
+        const val navigation = "2.3.2"
         const val coroutine = "1.4.2"
         const val mockk = "1.9.3"
     }
@@ -15,6 +16,7 @@ object Dep {
         const val android = "com.android.tools.build:gradle:4.1.2"
         const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Version.kotlin}"
         const val daggerHilt = "com.google.dagger:hilt-android-gradle-plugin:${Version.hilt}"
+        const val navigation = "androidx.navigation:navigation-safe-args-gradle-plugin:${Version.navigation}"
     }
 
     object AndroidX {
@@ -43,6 +45,12 @@ object Dep {
             const val hiltAndroidCompiler = "com.google.dagger:hilt-android-compiler:${Version.hilt}"
             const val hiltLifecycleViewModel = "androidx.hilt:hilt-lifecycle-viewmodel:${Version.androidHilt}"
             const val hiltCompiler = "androidx.hilt:hilt-compiler:${Version.androidHilt}"
+        }
+
+        object Navigation {
+            const val navigationFragment = "androidx.navigation:navigation-fragment-ktx:${Version.navigation}"
+            const val navigationUI = "androidx.navigation:navigation-ui-ktx:${Version.navigation}"
+            const val navigationRuntime = "androidx.navigation:navigation-runtime-ktx:${Version.navigation}"
         }
     }
 
