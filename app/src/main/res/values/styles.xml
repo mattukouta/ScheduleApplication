@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Button" parent="Widget.MaterialComponents.Button">
+
+    </style>
+    <style name="TextButton" parent="Widget.MaterialComponents.Button.TextButton">
+
+    </style>
+    <style name="OutlinedButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+
+    </style>
+
+    <style name="TitleText" parent="Widget.MaterialComponents.TextView">
+
+    </style>
+
+    <style name="ContentText" parent="Widget.MaterialComponents.TextView">
+
+    </style>
+</resources>
