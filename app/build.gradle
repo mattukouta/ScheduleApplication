@@ -1,6 +1,10 @@
+import dependencies.Dep
+
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -34,12 +38,36 @@ android {
 
 dependencies {
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.3.2'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.2.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation Dep.Kotlin.stdlib
+
+    implementation Dep.AndroidX.coreKTX
+    implementation Dep.AndroidX.appCompat
+    implementation Dep.AndroidX.material
+    implementation Dep.AndroidX.constraintLayout
+    implementation Dep.AndroidX.recyclerView
+    implementation Dep.AndroidX.activity
+    implementation Dep.AndroidX.fragment
+    implementation Dep.AndroidX.Lifecycle.lifecycleRuntime
+    implementation Dep.AndroidX.Lifecycle.lifecycleLiveData
+    implementation Dep.AndroidX.Lifecycle.lifecycleViewModel
+    implementation Dep.AndroidX.Room.room
+    implementation Dep.AndroidX.Room.roomRuntime
+    kapt Dep.AndroidX.Room.roomCompiler
+    implementation Dep.AndroidX.Dagger.hiltAndroid
+    kapt Dep.AndroidX.Dagger.hiltAndroidCompiler
+    implementation Dep.AndroidX.Dagger.hiltLifecycleViewModel
+    kapt Dep.AndroidX.Dagger.hiltCompiler
+
+    implementation Dep.Kotlin.stdlib
+    implementation Dep.Kotlin.Coroutine.coroutineCore
+    implementation Dep.Kotlin.Coroutine.coroutineAndroid
+
+
+    testImplementation Dep.Test.junit
+    testImplementation Dep.Test.androidTestCore
+    testImplementation Dep.Test.coroutineTest
+    testImplementation Dep.Test.Mockk.mockk
+
+    androidTestImplementation Dep.AndroidTest.androidJunit
+    androidTestImplementation Dep.AndroidTest.espressoCore
 }
