@@ -1,20 +1,23 @@
 package com.kouta.scheduleapplication.schedulelist
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import com.kouta.scheduleapplication.R
 import com.kouta.scheduleapplication.databinding.FragmentScheduleListBinding
+import com.kouta.scheduleapplication.model.Category
 import com.kouta.scheduleapplication.util.autoCleared
+import kotlinx.coroutines.flow.collect
 
 class ScheduleListFragment : Fragment() {
 
-    private val viewModel: ScheduleListViewModel by viewModels()
+    private val viewModel: ScheduleListViewModel by activityViewModels()
     private var binding: FragmentScheduleListBinding by autoCleared()
 
     override fun onCreateView(
@@ -28,15 +31,16 @@ class ScheduleListFragment : Fragment() {
             false
         )
 
-        binding.next.setOnClickListener {
-            findNavController().navigate(R.id.action_scheduleListFragment_to_editFragment)
-        }
-
         return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-    }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
+        lifecycleScope.launchWhenStarted {
+            viewModel.categories.collect {
+                Log.d("checkCollect", "更新")
+            }
+        }
+    }
 }

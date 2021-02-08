@@ -6,13 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import com.kouta.scheduleapplication.R
 import com.kouta.scheduleapplication.databinding.FragmentProfileBinding
 import com.kouta.scheduleapplication.util.autoCleared
 
 class ProfileFragment : Fragment() {
-    private val viewModel: ProfileViewModel by viewModels()
+    private val viewModel: ProfileViewModel by activityViewModels()
     private var binding: FragmentProfileBinding by autoCleared()
 
     override fun onCreateView(
