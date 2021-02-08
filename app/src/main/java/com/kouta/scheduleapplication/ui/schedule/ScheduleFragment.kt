@@ -1,4 +1,4 @@
-package com.kouta.scheduleapplication.edit
+package com.kouta.scheduleapplication.ui.schedule
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,21 +8,20 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import com.kouta.scheduleapplication.R
-import com.kouta.scheduleapplication.databinding.FragmentEditBinding
+import com.kouta.scheduleapplication.databinding.FragmentScheduleBinding
 import com.kouta.scheduleapplication.util.autoCleared
 
-class EditFragment : Fragment() {
-    private val viewModel: EditViewModel by activityViewModels()
-    private var binding: FragmentEditBinding by autoCleared()
+class ScheduleFragment : Fragment() {
+    private val viewModel: ScheduleViewModel by activityViewModels()
+    private var binding: FragmentScheduleBinding by autoCleared()
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = DataBindingUtil.inflate(
             inflater,
-            R.layout.fragment_edit,
+            R.layout.fragment_schedule,
             container,
             false
         )

@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
             name="viewModel"
-            type="com.kouta.scheduleapplication.ui.profile.ProfileViewModel" />
+            type="com.kouta.scheduleapplication.ui.schedule.ScheduleViewModel" />
     </data>
 
     <FrameLayout
-        android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.profile.ProfileFragment">
+        tools:context=".ui.schedule.ScheduleFragment">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="profile" />
+            android:text="Hello" />
+
     </FrameLayout>
 </layout>

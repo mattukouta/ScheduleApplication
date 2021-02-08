@@ -6,13 +6,13 @@
     <data>
         <variable
             name="viewModel"
-            type="com.kouta.scheduleapplication.schedulelist.ScheduleListViewModel" />
+            type="com.kouta.scheduleapplication.ui.schedulelist.ScheduleListViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".schedulelist.ScheduleListFragment">
+        tools:context=".ui.schedulelist.ScheduleListFragment">
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

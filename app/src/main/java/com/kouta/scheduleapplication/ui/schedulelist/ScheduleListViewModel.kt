@@ -1,4 +1,4 @@
-package com.kouta.scheduleapplication.schedulelist
+package com.kouta.scheduleapplication.ui.schedulelist
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

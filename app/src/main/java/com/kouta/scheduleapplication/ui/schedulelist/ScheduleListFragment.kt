@@ -1,4 +1,4 @@
-package com.kouta.scheduleapplication.schedulelist
+package com.kouta.scheduleapplication.ui.schedulelist
 
 import android.os.Bundle
 import android.util.Log

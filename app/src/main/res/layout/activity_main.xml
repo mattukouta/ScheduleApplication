@@ -3,10 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="viewModel"
+            type="com.kouta.scheduleapplication.ui.main.MainViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".main.MainActivity">
+        tools:context=".ui.main.MainActivity">
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/container"
@@ -25,6 +32,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:menu="@menu/bottom_navigation">
+<!--            android:visibility="@{viewModel.isBottomNavigationVisible ? View.VISIBLE : View.GONE}"-->
 
         </com.google.android.material.bottomnavigation.BottomNavigationView>
 

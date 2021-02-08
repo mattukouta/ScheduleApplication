@@ -1,4 +1,4 @@
-package com.kouta.scheduleapplication.profile
+package com.kouta.scheduleapplication.ui.profile
 
 import androidx.lifecycle.ViewModel
 

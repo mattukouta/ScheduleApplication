@@ -1,4 +1,4 @@
-package com.kouta.scheduleapplication.main
+package com.kouta.scheduleapplication.ui.main
 
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
      * Called on first creation and when restoring state.
      */
     private fun setupBottomNavigationBar() {
-        val navGraphIds = listOf(R.navigation.schedule_list, R.navigation.profile)
+        val navGraphIds = listOf(R.navigation.schedule, R.navigation.profile)
 
         viewModel.initController(
             binding.bottomNavigationView.setupWithNavController(
@@ -54,6 +54,13 @@ class MainActivity : AppCompatActivity() {
                 intent = intent
             )
         )
+
+        viewModel.controller.value?.addOnDestinationChangedListener { _, destination, _ ->
+            when(destination.id) {
+                R.id.editFragment -> viewModel.hideBottomNavigation()
+                else -> viewModel.showBottomNavigation()
+            }
+        }
 
         viewModel.updateCurrentNavController(currentNavController = viewModel.controller)
     }
