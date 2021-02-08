@@ -3,9 +3,9 @@ package com.kouta.scheduleapplication.model
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "category_table")
-data class Category(
+@Entity(tableName = "theme_table")
+data class Theme(
     @PrimaryKey(autoGenerate = true)
-    val categoryId: Int = 0,
+    val themeId: Int = 0,
     val name: String
 )

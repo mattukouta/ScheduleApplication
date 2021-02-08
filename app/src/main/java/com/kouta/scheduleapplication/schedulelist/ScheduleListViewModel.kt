@@ -2,8 +2,8 @@ package com.kouta.scheduleapplication.schedulelist
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.kouta.scheduleapplication.data.repository.CategoryRepository
-import com.kouta.scheduleapplication.model.Category
+import com.kouta.scheduleapplication.data.repository.ThemeRepository
+import com.kouta.scheduleapplication.model.Theme
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -14,26 +14,26 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ScheduleListViewModel @Inject constructor(
-    private val categoryRepository: CategoryRepository
+    private val themeRepository: ThemeRepository
 ) : ViewModel() {
 
-    private var _categories: MutableStateFlow<List<Category>> = MutableStateFlow(listOf())
-    val categories: StateFlow<List<Category>> = _categories
+    private var _themes: MutableStateFlow<List<Theme>> = MutableStateFlow(listOf())
+    val themes: StateFlow<List<Theme>> = _themes
 
-    fun insertCategory(category: Category) =
+    fun insertTheme(theme: Theme) =
         viewModelScope.launch(IO) {
-            categoryRepository.insertCategory(category)
-            _categories.value = categoryRepository.getCategories()
+            themeRepository.insertTheme(theme)
+            _themes.value = themeRepository.getThemes()
         }
 
-    fun getCategories() =
+    fun getThemes() =
         viewModelScope.launch(IO) {
-            _categories.value = categoryRepository.getCategories()
+            _themes.value = themeRepository.getThemes()
         }
 
-    fun deleteCategory(categoryId: Int) =
+    fun deleteTheme(themeId: Int) =
         viewModelScope.launch(IO) {
-            categoryRepository.deleteCategory(categoryId)
-            _categories.value = categoryRepository.getCategories()
+            themeRepository.deleteTheme(themeId)
+            _themes.value = themeRepository.getThemes()
         }
 }

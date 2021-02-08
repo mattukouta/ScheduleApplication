@@ -1,8 +1,8 @@
 package com.kouta.scheduleapplication.module
 
 import android.content.Context
-import com.kouta.scheduleapplication.data.database.CategoryDao
-import com.kouta.scheduleapplication.data.database.CategoryDatabase
+import com.kouta.scheduleapplication.data.database.ThemeDao
+import com.kouta.scheduleapplication.data.database.ThemeDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,6 +15,6 @@ import javax.inject.Singleton
 object ScheduleModule {
     @Provides
     @Singleton
-    fun provideCategoryDao(@ApplicationContext context: Context): CategoryDao =
-        CategoryDatabase.getDatabase(context).categoryDao()
+    fun provideThemeDao(@ApplicationContext context: Context): ThemeDao =
+        ThemeDatabase.getDatabase(context).themeDao()
 }
