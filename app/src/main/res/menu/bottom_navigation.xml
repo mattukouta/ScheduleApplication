@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/schedule_list"
+        android:icon="@drawable/ic_baseline_view_list_24"
+        android:contentDescription="@string/navigation_list"
+        android:title="@string/navigation_list"/>
+
+    <item
+        android:id="@+id/profile"
+        android:icon="@drawable/ic_baseline_person_24"
+        android:contentDescription="@string/navigation_profile"
+        android:title="@string/navigation_profile"/>
+</menu>

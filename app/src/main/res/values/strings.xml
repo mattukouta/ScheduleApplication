@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">ScheduleApplication</string>
+
+    <!--  Bottom Navigationタイトル  -->
+    <string name="navigation_list">予定一覧</string>
+    <string name="navigation_profile">プロフィール</string>
+
+    <!--  AppBarタイトル  -->
+    <string name="title_list">予定一覧</string>
+    <string name="title_edit">予定入力</string>
+    <string name="title_profile">プロフィール</string>
 </resources>

@@ -54,6 +54,7 @@ dependencies {
     implementation Dep.AndroidX.Lifecycle.lifecycleRuntime
     implementation Dep.AndroidX.Lifecycle.lifecycleLiveData
     implementation Dep.AndroidX.Lifecycle.lifecycleViewModel
+    implementation Dep.AndroidX.Lifecycle.lifecycleCommon
     implementation Dep.AndroidX.Room.room
     implementation Dep.AndroidX.Room.roomRuntime
     kapt Dep.AndroidX.Room.roomCompiler

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/schedule_list"
+    app:startDestination="@id/scheduleListFragment">
+
+    <fragment
+        android:id="@+id/scheduleListFragment"
+        android:name="com.kouta.scheduleapplication.schedulelist.ScheduleListFragment"
+        android:label="@string/title_list"
+        tools:layout="@layout/fragment_schedule_list">
+        <action
+            android:id="@+id/action_scheduleListFragment_to_editFragment"
+            app:destination="@id/editFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editFragment"
+        android:name="com.kouta.scheduleapplication.edit.EditFragment"
+        android:label="@string/title_edit"
+        tools:layout="@layout/fragment_edit"/>
+</navigation>

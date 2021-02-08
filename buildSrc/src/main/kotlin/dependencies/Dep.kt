@@ -32,6 +32,7 @@ object Dep {
             const val lifecycleRuntime = "androidx.lifecycle:lifecycle-runtime-ktx:${Version.lifecycle}"
             const val lifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Version.lifecycle}"
             const val lifecycleLiveData = "androidx.lifecycle:lifecycle-livedata-ktx:${Version.lifecycle}"
+            const val lifecycleCommon = "androidx.lifecycle:lifecycle-common-java8:${Version.lifecycle}"
         }
 
         object Room {
