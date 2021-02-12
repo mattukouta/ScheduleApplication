@@ -1,7 +1,5 @@
 package com.kouta.scheduleapplication.ui.schedule
 
-import android.animation.Animator
-import android.animation.AnimatorListenerAdapter
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,7 +12,8 @@ import androidx.lifecycle.lifecycleScope
 import com.google.android.material.tabs.TabLayoutMediator
 import com.kouta.scheduleapplication.R
 import com.kouta.scheduleapplication.databinding.FragmentScheduleBinding
-import com.kouta.scheduleapplication.model.Theme
+import com.kouta.scheduleapplication.ui.schedule.FloatingAction.allFloatingActionButtonHide
+import com.kouta.scheduleapplication.ui.schedule.FloatingAction.floatingActionButtonAnimation
 import com.kouta.scheduleapplication.util.autoCleared
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.flow.collect
@@ -23,6 +22,8 @@ import kotlinx.coroutines.withContext
 class ScheduleFragment : Fragment() {
     private val viewModel: ScheduleViewModel by activityViewModels()
     private var binding: FragmentScheduleBinding by autoCleared()
+
+    lateinit var floatingActionButtonViews: List<View>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,6 +45,11 @@ class ScheduleFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        floatingActionButtonViews = listOf(
+            binding.floatingActionButtonSchedule,
+            binding.floatingActionButtonTheme
+        )
+
         setClickEvents()
 
         setCollects()
@@ -53,8 +59,13 @@ class ScheduleFragment : Fragment() {
         super.onStop()
 
         Log.d("onStop", "stop")
-        allShowOut()
-        viewModel.updateIsFABSelected(false)
+
+        if (viewModel.isFABShow.value) {
+            viewModel.updateIsFABShow(false)
+            allFloatingActionButtonHide(
+                floatingActionButtonViews
+            )
+        }
     }
 
     private fun setCollects() {
@@ -79,32 +90,28 @@ class ScheduleFragment : Fragment() {
         viewModel.let { scheduleViewModel ->
             binding.apply {
                 floatingActionButtonSchedule.setOnClickListener {
-                    updateFloatingActionButton(scheduleViewModel.isFABSelected.value)
+                    updateFloatingActionButton(scheduleViewModel.isFABShow.value)
                 }
 
                 floatingActionButtonTheme.setOnClickListener {
-                    updateFloatingActionButton(scheduleViewModel.isFABSelected.value)
+                    updateFloatingActionButton(scheduleViewModel.isFABShow.value)
                 }
 
                 floatingActionButton.setOnClickListener {
-                    updateFloatingActionButton(scheduleViewModel.isFABSelected.value)
+                    updateFloatingActionButton(scheduleViewModel.isFABShow.value)
                 }
             }
         }
     }
 
-    private fun updateFloatingActionButton(isSelected: Boolean) {
-        binding.floatingActionButton
-            .animate()
-            .setDuration(200)
-            .rotation(if(isSelected) 0f else 135f)
+    private fun updateFloatingActionButton(isShow: Boolean) {
+        floatingActionButtonAnimation(
+            binding.floatingActionButton,
+            isShow,
+            floatingActionButtonViews
+        )
 
-        when(isSelected) {
-            true -> allShowOut()
-            false -> allShowIn()
-        }
-
-        viewModel.updateIsFABSelected(!isSelected)
+        viewModel.updateIsFABShow(!isShow)
     }
 
     private fun showIn(view: View) {
@@ -146,10 +153,5 @@ class ScheduleFragment : Fragment() {
                 }).alpha(0f)
                 .start()
         }
-    }
-
-    private fun allShowOut() {
-        showOut(binding.floatingActionButtonSchedule)
-        showOut(binding.floatingActionButtonTheme)
     }
 }
