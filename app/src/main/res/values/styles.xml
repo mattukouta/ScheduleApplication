@@ -17,4 +17,8 @@
     <style name="ContentText" parent="Widget.MaterialComponents.TextView">
 
     </style>
+
+    <style name="FloatingActionButton" parent="Widget.MaterialComponents.FloatingActionButton">
+        <item name="backgroundTint">@color/white</item>
+    </style>
 </resources>

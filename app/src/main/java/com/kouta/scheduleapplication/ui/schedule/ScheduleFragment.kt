@@ -1,6 +1,9 @@
 package com.kouta.scheduleapplication.ui.schedule
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,19 +44,20 @@ class ScheduleFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setClickEvents()
 
-        binding.insert.setOnClickListener {
-            viewModel.apply {
-                updateCurrentItem(
-                    binding.viewPager.currentItem
-                )
+        setCollects()
+    }
 
-                insertThemes(
-                    Theme(name = "hoge")
-                )
-            }
-        }
+    override fun onStop() {
+        super.onStop()
 
+        Log.d("onStop", "stop")
+        allShowOut()
+        viewModel.updateIsFABSelected(false)
+    }
+
+    private fun setCollects() {
         lifecycleScope.launchWhenStarted {
             viewModel.themes.collect { themes ->
                 withContext(Main) {
@@ -69,5 +73,79 @@ class ScheduleFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun setClickEvents() {
+        viewModel.let { scheduleViewModel ->
+            binding.apply {
+                floatingActionButtonSchedule.setOnClickListener {
+                    allShowOut()
+                    scheduleViewModel.updateIsFABSelected(false)
+                }
+
+                floatingActionButtonTheme.setOnClickListener {
+                    allShowOut()
+                    scheduleViewModel.updateIsFABSelected(false)
+                }
+
+                floatingActionButton.setOnClickListener {
+                    binding.floatingActionButton.animate().setDuration(200)
+                        .rotation(if(scheduleViewModel.isFABSelected.value) 0f else 135f)
+
+                    if (scheduleViewModel.isFABSelected.value) {
+                        allShowOut()
+                    } else {
+                        allShowIn()
+                    }
+                    scheduleViewModel.updateIsFABSelected(!scheduleViewModel.isFABSelected.value)
+                }
+            }
+        }
+    }
+
+    private fun showIn(view: View) {
+        view.apply {
+            visibility = View.VISIBLE
+            alpha = 0f
+            translationY = 120f
+            animate()
+                .setDuration(200)
+                .translationY(0f)
+                .setListener(object : AnimatorListenerAdapter() {
+                    override fun onAnimationEnd(animation: Animator) {
+                        super.onAnimationEnd(animation)
+                    }
+                })
+                .alpha(1f)
+                .start()
+        }
+    }
+
+    private fun allShowIn() {
+        showIn(binding.floatingActionButtonSchedule)
+        showIn(binding.floatingActionButtonTheme)
+    }
+
+    private fun showOut(view: View) {
+        view.apply {
+            visibility = View.VISIBLE
+            alpha = 1f
+            translationY = 0f
+            animate()
+                .setDuration(200)
+                .translationY(view.height.toFloat())
+                .setListener(object : AnimatorListenerAdapter() {
+                    override fun onAnimationEnd(animation: Animator) {
+                        view.visibility = View.GONE
+                        super.onAnimationEnd(animation)
+                    }
+                }).alpha(0f)
+                .start()
+        }
+    }
+
+    private fun allShowOut() {
+        showOut(binding.floatingActionButtonSchedule)
+        showOut(binding.floatingActionButtonTheme)
     }
 }

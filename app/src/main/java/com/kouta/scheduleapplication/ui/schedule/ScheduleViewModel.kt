@@ -21,6 +21,9 @@ class ScheduleViewModel @Inject constructor(
     private var _currentItem: MutableStateFlow<Int> = MutableStateFlow(0)
     val currentItem: StateFlow<Int> = _currentItem
 
+    private var _isFABSelected: MutableStateFlow<Boolean> = MutableStateFlow(false)
+    val isFABSelected: StateFlow<Boolean> = _isFABSelected
+
     fun getThemes() {
         viewModelScope.launch(IO) {
             _themes.value = themeRepository.getThemes()
@@ -36,5 +39,9 @@ class ScheduleViewModel @Inject constructor(
 
     fun updateCurrentItem(currentItem: Int) {
         _currentItem.value = currentItem
+    }
+
+    fun updateIsFABSelected(isSelected: Boolean) {
+        _isFABSelected.value = isSelected
     }
 }
