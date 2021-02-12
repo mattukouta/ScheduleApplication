@@ -79,28 +79,32 @@ class ScheduleFragment : Fragment() {
         viewModel.let { scheduleViewModel ->
             binding.apply {
                 floatingActionButtonSchedule.setOnClickListener {
-                    allShowOut()
-                    scheduleViewModel.updateIsFABSelected(false)
+                    updateFloatingActionButton(scheduleViewModel.isFABSelected.value)
                 }
 
                 floatingActionButtonTheme.setOnClickListener {
-                    allShowOut()
-                    scheduleViewModel.updateIsFABSelected(false)
+                    updateFloatingActionButton(scheduleViewModel.isFABSelected.value)
                 }
 
                 floatingActionButton.setOnClickListener {
-                    binding.floatingActionButton.animate().setDuration(200)
-                        .rotation(if(scheduleViewModel.isFABSelected.value) 0f else 135f)
-
-                    if (scheduleViewModel.isFABSelected.value) {
-                        allShowOut()
-                    } else {
-                        allShowIn()
-                    }
-                    scheduleViewModel.updateIsFABSelected(!scheduleViewModel.isFABSelected.value)
+                    updateFloatingActionButton(scheduleViewModel.isFABSelected.value)
                 }
             }
         }
+    }
+
+    private fun updateFloatingActionButton(isSelected: Boolean) {
+        binding.floatingActionButton
+            .animate()
+            .setDuration(200)
+            .rotation(if(isSelected) 0f else 135f)
+
+        when(isSelected) {
+            true -> allShowOut()
+            false -> allShowIn()
+        }
+
+        viewModel.updateIsFABSelected(!isSelected)
     }
 
     private fun showIn(view: View) {
