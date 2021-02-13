@@ -15,6 +15,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.kouta.scheduleapplication.R
 import com.kouta.scheduleapplication.databinding.FragmentScheduleBinding
 import com.kouta.scheduleapplication.model.Theme
+import com.kouta.scheduleapplication.ui.themeaddition.ThemeAdditionDialogListener
 import com.kouta.scheduleapplication.ui.schedule.FloatingAction.allFloatingActionButtonHide
 import com.kouta.scheduleapplication.ui.schedule.FloatingAction.floatingActionButtonAnimation
 import com.kouta.scheduleapplication.util.autoCleared
@@ -123,7 +124,7 @@ class ScheduleFragment : Fragment() {
     private fun showThemeAdditionDialog() {
         val action = ScheduleFragmentDirections
             .actionScheduleFragmentToThemeAdditionDialogFragment(
-                object : ThemeAdditionDialogListener{
+                object : ThemeAdditionDialogListener {
                     override fun onPositiveButtonClick(theme: String) {
                         updateCurrentItem()
 

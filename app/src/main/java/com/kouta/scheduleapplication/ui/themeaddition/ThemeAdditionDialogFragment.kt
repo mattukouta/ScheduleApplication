@@ -1,4 +1,4 @@
-package com.kouta.scheduleapplication.ui.schedule
+package com.kouta.scheduleapplication.ui.themeaddition
 
 import android.app.Dialog
 import android.os.Bundle
@@ -9,6 +9,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.navigation.fragment.navArgs
 import com.kouta.scheduleapplication.R
 import com.kouta.scheduleapplication.databinding.FragmentThemeAdditionDialogBinding
+import com.kouta.scheduleapplication.ui.schedule.ThemeAdditionDialogFragmentArgs
 import com.kouta.scheduleapplication.util.autoCleared
 
 class ThemeAdditionDialogFragment : DialogFragment() {

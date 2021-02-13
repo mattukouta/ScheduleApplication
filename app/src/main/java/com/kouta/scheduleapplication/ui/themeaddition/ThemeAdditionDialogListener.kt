@@ -1,4 +1,4 @@
-package com.kouta.scheduleapplication.ui.schedule
+package com.kouta.scheduleapplication.ui.themeaddition
 
 import android.os.Parcelable
 

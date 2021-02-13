@@ -33,7 +33,7 @@
 
     <dialog
         android:id="@+id/themeAdditionDialogFragment"
-        android:name="com.kouta.scheduleapplication.ui.schedule.ThemeAdditionDialogFragment"
+        android:name="com.kouta.scheduleapplication.ui.themeaddition.ThemeAdditionDialogFragment"
         android:label="ThemeAdditionDialogFragment" >
         <argument
             android:name="listener"
