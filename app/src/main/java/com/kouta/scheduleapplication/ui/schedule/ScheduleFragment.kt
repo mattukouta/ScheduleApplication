@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayoutMediator
 import com.kouta.scheduleapplication.R
 import com.kouta.scheduleapplication.databinding.FragmentScheduleBinding
+import com.kouta.scheduleapplication.model.Theme
 import com.kouta.scheduleapplication.ui.schedule.FloatingAction.allFloatingActionButtonHide
 import com.kouta.scheduleapplication.ui.schedule.FloatingAction.floatingActionButtonAnimation
 import com.kouta.scheduleapplication.util.autoCleared
@@ -68,6 +69,8 @@ class ScheduleFragment : Fragment() {
                 floatingActionButtonViews
             )
         }
+
+        updateCurrentItem()
     }
 
     private fun setCollects() {
@@ -81,7 +84,7 @@ class ScheduleFragment : Fragment() {
                     }
 
                     TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
-                        tab.text = themes[position].name + themes[position].themeId
+                        tab.text = themes[position].name
                     }.attach()
                 }
             }
@@ -122,7 +125,9 @@ class ScheduleFragment : Fragment() {
             .actionScheduleFragmentToThemeAdditionDialogFragment(
                 object : ThemeAdditionDialogListener{
                     override fun onPositiveButtonClick(theme: String) {
-                        // ToDo: データ保存処理を追加する
+                        updateCurrentItem()
+
+                        viewModel.insertThemes(Theme(name = theme))
                     }
 
                     // ToDo: 処理を把握できていない
@@ -133,4 +138,6 @@ class ScheduleFragment : Fragment() {
 
         findNavController().navigate(action)
     }
+
+    private fun updateCurrentItem() = viewModel.updateCurrentItem(binding.viewPager.currentItem)
 }
