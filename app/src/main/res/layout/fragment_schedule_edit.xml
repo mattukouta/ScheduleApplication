@@ -5,13 +5,13 @@
     <data>
         <variable
             name="viewModel"
-            type="com.kouta.scheduleapplication.ui.edit.EditViewModel" />
+            type="com.kouta.scheduleapplication.ui.scheduleedit.ScheduleEditViewModel" />
     </data>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.edit.EditFragment">
+        tools:context=".ui.scheduleedit.ScheduleEditFragment">
 
         <TextView
             android:layout_width="match_parent"

@@ -96,6 +96,7 @@ class ScheduleFragment : Fragment() {
         viewModel.let { scheduleViewModel ->
             binding.apply {
                 floatingActionButtonSchedule.setOnClickListener {
+                    findNavController().navigate(R.id.action_scheduleFragment_to_scheduleEditFragment)
                     updateFloatingActionButton(scheduleViewModel.isFABShow.value)
                 }
 

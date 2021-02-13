@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.controller.value?.addOnDestinationChangedListener { _, destination, _ ->
             when(destination.id) {
-                R.id.editFragment -> viewModel.hideBottomNavigation()
+                R.id.scheduleEditFragment -> viewModel.hideBottomNavigation()
                 else -> viewModel.showBottomNavigation()
             }
         }
