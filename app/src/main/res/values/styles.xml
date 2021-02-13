@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <style name="MyAppTheme" parent="Theme.ScheduleApplication" />
+
     <style name="Button" parent="Widget.MaterialComponents.Button">
 
     </style>
@@ -21,4 +23,22 @@
     <style name="FloatingActionButton" parent="Widget.MaterialComponents.FloatingActionButton">
         <item name="backgroundTint">@color/white</item>
     </style>
+
+    <style name="AlertDialogStyle" parent="Theme.MaterialComponents.Light.Dialog.Alert">
+        <item name="buttonBarPositiveButtonStyle">@style/alertDialogStyle.Positive</item>
+        <item name="buttonBarNegativeButtonStyle">@style/alertDialogStyle.Negative</item>
+    </style>
+
+    <style name="alertDialogStyle" parent="Widget.AppCompat.Button.Borderless.Colored">
+
+    </style>
+
+    <style name="alertDialogStyle.Positive">
+        <item name="android:textColor">@color/md_red_A700</item>
+    </style>
+
+    <style name="alertDialogStyle.Negative">
+        <item name="android:textColor">@color/md_blue_A700</item>
+    </style>
+
 </resources>

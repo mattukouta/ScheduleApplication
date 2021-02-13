@@ -10,7 +10,11 @@
         android:id="@+id/scheduleFragment"
         android:name="com.kouta.scheduleapplication.ui.schedule.ScheduleFragment"
         android:label="@string/title_list"
-        tools:layout="@layout/fragment_schedule" />
+        tools:layout="@layout/fragment_schedule" >
+        <action
+            android:id="@+id/action_scheduleFragment_to_themeAdditionDialogFragment"
+            app:destination="@id/themeAdditionDialogFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/scheduleListFragment"
@@ -26,4 +30,13 @@
         android:name="com.kouta.scheduleapplication.ui.edit.EditFragment"
         android:label="@string/title_edit"
         tools:layout="@layout/fragment_edit"/>
+
+    <dialog
+        android:id="@+id/themeAdditionDialogFragment"
+        android:name="com.kouta.scheduleapplication.ui.schedule.ThemeAdditionDialogFragment"
+        android:label="ThemeAdditionDialogFragment" >
+        <argument
+            android:name="listener"
+            app:argType="com.kouta.scheduleapplication.ui.schedule.ThemeAdditionDialogListener" />
+    </dialog>
 </navigation>

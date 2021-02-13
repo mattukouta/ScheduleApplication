@@ -1,6 +1,7 @@
 package com.kouta.scheduleapplication.ui.schedule
 
 import android.os.Bundle
+import android.os.Parcel
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayoutMediator
 import com.kouta.scheduleapplication.R
 import com.kouta.scheduleapplication.databinding.FragmentScheduleBinding
@@ -94,6 +96,7 @@ class ScheduleFragment : Fragment() {
                 }
 
                 floatingActionButtonTheme.setOnClickListener {
+                    showThemeAdditionDialog()
                     updateFloatingActionButton(scheduleViewModel.isFABShow.value)
                 }
 
@@ -114,44 +117,20 @@ class ScheduleFragment : Fragment() {
         viewModel.updateIsFABShow(!isShow)
     }
 
-    private fun showIn(view: View) {
-        view.apply {
-            visibility = View.VISIBLE
-            alpha = 0f
-            translationY = 120f
-            animate()
-                .setDuration(200)
-                .translationY(0f)
-                .setListener(object : AnimatorListenerAdapter() {
-                    override fun onAnimationEnd(animation: Animator) {
-                        super.onAnimationEnd(animation)
+    private fun showThemeAdditionDialog() {
+        val action = ScheduleFragmentDirections
+            .actionScheduleFragmentToThemeAdditionDialogFragment(
+                object : ThemeAdditionDialogListener{
+                    override fun onPositiveButtonClick(theme: String) {
+                        // ToDo: データ保存処理を追加する
                     }
-                })
-                .alpha(1f)
-                .start()
-        }
-    }
 
-    private fun allShowIn() {
-        showIn(binding.floatingActionButtonSchedule)
-        showIn(binding.floatingActionButtonTheme)
-    }
+                    // ToDo: 処理を把握できていない
+                    override fun describeContents(): Int = 0
+                    override fun writeToParcel(dest: Parcel?, flags: Int) {}
+                }
+            )
 
-    private fun showOut(view: View) {
-        view.apply {
-            visibility = View.VISIBLE
-            alpha = 1f
-            translationY = 0f
-            animate()
-                .setDuration(200)
-                .translationY(view.height.toFloat())
-                .setListener(object : AnimatorListenerAdapter() {
-                    override fun onAnimationEnd(animation: Animator) {
-                        view.visibility = View.GONE
-                        super.onAnimationEnd(animation)
-                    }
-                }).alpha(0f)
-                .start()
-        }
+        findNavController().navigate(action)
     }
 }

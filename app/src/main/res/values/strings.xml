@@ -9,4 +9,11 @@
     <string name="title_list">予定一覧</string>
     <string name="title_edit">予定入力</string>
     <string name="title_profile">プロフィール</string>
+
+    <!--  Dialog  -->
+    <string name="dialog_theme_addition_hint">例）勉強、家事</string>
+    <string name="dialog_theme_addition_message">追加したいテーマ名を入力してください</string>
+    <string name="dialog_theme_addition_positive_button">追加</string>
+    <string name="dialog_theme_addition_negative_button">キャンセル</string>
+    <string name="dialog_theme_addition_warning">テーマを入力してください</string>
 </resources>
