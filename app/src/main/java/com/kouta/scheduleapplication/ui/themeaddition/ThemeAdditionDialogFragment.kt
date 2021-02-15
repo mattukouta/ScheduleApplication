@@ -19,7 +19,7 @@ class ThemeAdditionDialogFragment : DialogFragment() {
         binding = FragmentThemeAdditionDialogBinding
             .inflate(LayoutInflater.from(requireContext()))
 
-        val alertDialog = AlertDialog.Builder(requireContext(), R.style.AlertDialogStyle)
+        val alertDialog = AlertDialog.Builder(requireContext(), R.style.MyAppTheme_AlertDialog)
             .setView(binding.root)
             .setMessage(R.string.dialog_theme_addition_message)
             .setPositiveButton(R.string.dialog_theme_addition_positive_button, null)

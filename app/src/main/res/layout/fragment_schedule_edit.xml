@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -8,15 +10,159 @@
             type="com.kouta.scheduleapplication.ui.scheduleedit.ScheduleEditViewModel" />
     </data>
 
-    <FrameLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.scheduleedit.ScheduleEditFragment">
+        android:layout_height="wrap_content">
 
-        <TextView
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Hello" />
+            android:layout_height="wrap_content"
+            android:paddingBottom="16dp"
+            tools:context=".ui.scheduleedit.ScheduleEditFragment">
 
-    </FrameLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/text_layout_schedule_title"
+                style="@style/MyAppTheme.TextInputLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                app:hintAnimationEnabled="true"
+                app:hintEnabled="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/text_input_schedule_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_schedule_title"
+                    android:imeOptions="actionSend"
+                    android:inputType="text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/text_layout_schedule_detail"
+                style="@style/MyAppTheme.TextInputLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:hintAnimationEnabled="true"
+                app:hintEnabled="true"
+                app:layout_constraintEnd_toEndOf="@+id/text_layout_schedule_title"
+                app:layout_constraintStart_toStartOf="@+id/text_layout_schedule_title"
+                app:layout_constraintTop_toBottomOf="@+id/text_layout_schedule_title">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/text_input_schedule_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_schedule_detail"
+                    android:imeOptions="actionSend"
+                    android:inputType="textMultiLine"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/text_view_theme"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/label_schedule_edit_theme"
+                app:layout_constraintEnd_toEndOf="@+id/text_layout_schedule_detail"
+                app:layout_constraintStart_toStartOf="@+id/text_layout_schedule_detail"
+                app:layout_constraintTop_toBottomOf="@+id/text_layout_schedule_detail"
+                style="@style/MyAppTheme.TitleText"/>
+
+            <Spinner
+                android:id="@+id/spinner_theme"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/text_layout_schedule_detail"
+                app:layout_constraintStart_toStartOf="@+id/text_layout_schedule_detail"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_theme"
+                style="@style/MyAppTheme.Spinner"/>
+
+            <TextView
+                android:id="@+id/text_view_priority"
+                style="@style/MyAppTheme.TitleText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/label_schedule_edit_priority"
+                app:layout_constraintEnd_toEndOf="@+id/text_view_theme"
+                app:layout_constraintStart_toStartOf="@+id/text_view_theme"
+                app:layout_constraintTop_toBottomOf="@+id/spinner_theme" />
+
+            <Spinner
+                android:id="@+id/spinner_priority"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/spinner_theme"
+                app:layout_constraintStart_toStartOf="@+id/spinner_theme"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_priority"
+                style="@style/MyAppTheme.Spinner"/>
+
+            <TextView
+                android:id="@+id/text_view_timestamp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/label_schedule_edit_timestamp"
+                app:layout_constraintEnd_toEndOf="@+id/text_view_priority"
+                app:layout_constraintHorizontal_bias="0.529"
+                app:layout_constraintStart_toStartOf="@+id/text_view_priority"
+                app:layout_constraintTop_toBottomOf="@+id/spinner_priority" />
+
+            <LinearLayout
+                android:id="@+id/linear_layout_timestamp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                app:layout_constraintEnd_toEndOf="@+id/text_view_timestamp"
+                app:layout_constraintStart_toStartOf="@+id/text_view_timestamp"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_timestamp">
+
+                <TextView
+                    android:id="@+id/text_view_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    style="@style/MyAppTheme.ContentText"
+                    tools:text="2021年2月18日(木)" />
+
+                <TextView
+                    android:id="@+id/text_view_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    style="@style/MyAppTheme.ContentText"
+                    tools:text="16:00" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/button"
+                style="@style/MyAppTheme.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/schedule_edit_save"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linear_layout_timestamp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 </layout>

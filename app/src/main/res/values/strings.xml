@@ -16,4 +16,18 @@
     <string name="dialog_theme_addition_positive_button">追加</string>
     <string name="dialog_theme_addition_negative_button">キャンセル</string>
     <string name="dialog_theme_addition_warning">テーマを入力してください</string>
+
+    <!--  hint  -->
+    <string name="hint_schedule_title">タイトル</string>
+    <string name="hint_schedule_detail">詳細</string>
+    <string name="hint_schedule_priority">優先度</string>
+
+    <!--  ラベル  -->
+    <string name="label_schedule_edit_theme">テーマ選択</string>
+    <string name="label_schedule_edit_priority">優先度選択</string>
+    <string name="label_schedule_edit_timestamp">日時選択</string>
+
+    <!--  Button  -->
+    <string name="schedule_edit_save">保存</string>
+
 </resources>

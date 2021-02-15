@@ -2,29 +2,29 @@
 <resources>
     <style name="MyAppTheme" parent="Theme.ScheduleApplication" />
 
-    <style name="Button" parent="Widget.MaterialComponents.Button">
+    <style name="MyAppTheme.Button" parent="Widget.MaterialComponents.Button">
 
     </style>
-    <style name="TextButton" parent="Widget.MaterialComponents.Button.TextButton">
+    <style name="MyAppTheme.TextButton" parent="Widget.MaterialComponents.Button.TextButton">
 
     </style>
-    <style name="OutlinedButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
-
-    </style>
-
-    <style name="TitleText" parent="Widget.MaterialComponents.TextView">
+    <style name="MyAppTheme.OutlinedButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
 
     </style>
 
-    <style name="ContentText" parent="Widget.MaterialComponents.TextView">
+    <style name="MyAppTheme.TitleText" parent="Widget.MaterialComponents.TextView">
 
     </style>
 
-    <style name="FloatingActionButton" parent="Widget.MaterialComponents.FloatingActionButton">
+    <style name="MyAppTheme.ContentText" parent="Widget.MaterialComponents.TextView">
+
+    </style>
+
+    <style name="MyAppTheme.FloatingActionButton" parent="Widget.MaterialComponents.FloatingActionButton">
         <item name="backgroundTint">@color/white</item>
     </style>
 
-    <style name="AlertDialogStyle" parent="Theme.MaterialComponents.Light.Dialog.Alert">
+    <style name="MyAppTheme.AlertDialog" parent="Theme.MaterialComponents.Light.Dialog.Alert">
         <item name="buttonBarPositiveButtonStyle">@style/alertDialogStyle.Positive</item>
         <item name="buttonBarNegativeButtonStyle">@style/alertDialogStyle.Negative</item>
     </style>
@@ -39,6 +39,14 @@
 
     <style name="alertDialogStyle.Negative">
         <item name="android:textColor">@color/md_blue_A700</item>
+    </style>
+
+    <style name="MyAppTheme.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+    </style>
+
+    <style name="MyAppTheme.Spinner" parent="Widget.AppCompat.Spinner.Underlined">
+
     </style>
 
 </resources>
