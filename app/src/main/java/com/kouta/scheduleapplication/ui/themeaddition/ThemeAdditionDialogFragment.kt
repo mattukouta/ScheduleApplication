@@ -11,9 +11,10 @@ import com.kouta.scheduleapplication.R
 import com.kouta.scheduleapplication.databinding.FragmentThemeAdditionDialogBinding
 import com.kouta.scheduleapplication.util.autoCleared
 
-class ThemeAdditionDialogFragment : DialogFragment() {
+class ThemeAdditionDialogFragment(
+    private val listener: ThemeAdditionDialogListener
+) : DialogFragment() {
     private var binding: FragmentThemeAdditionDialogBinding by autoCleared()
-    private val args: ThemeAdditionDialogFragmentArgs by navArgs()
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         binding = FragmentThemeAdditionDialogBinding
@@ -39,7 +40,7 @@ class ThemeAdditionDialogFragment : DialogFragment() {
             val inputTheme = (binding.editTextTheme.text?.toString() ?: "").trim()
 
             if (inputTheme.isNotBlank()) {
-                args.listener.onPositiveButtonClick(inputTheme)
+                listener.onPositiveButtonClick(inputTheme)
                 dismiss()
             } else {
                 binding.textViewWarning.visibility = View.VISIBLE
