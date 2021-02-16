@@ -30,11 +30,20 @@ class ScheduleEditViewModel @Inject constructor(
     private var _schedules: MutableStateFlow<List<Theme>> = MutableStateFlow(listOf())
     val schedules: StateFlow<List<Theme>> = _schedules
 
+    private var _scheduleTitle: MutableStateFlow<String> = MutableStateFlow("")
+    val scheduleTitle: StateFlow<String> = _scheduleTitle
+
+    private var _themeSpinnerSelected: MutableStateFlow<Int> = MutableStateFlow(0)
+    val themeSpinnerSelected: StateFlow<Int> = _themeSpinnerSelected
+
     private var _date: MutableStateFlow<Date> = MutableStateFlow(Date())
     val date: StateFlow<Date> = _date
 
     private var _time: MutableStateFlow<Time> = MutableStateFlow(Time())
     val time: StateFlow<Time> = _time
+
+    private var _isButtonEnabled: MutableStateFlow<Boolean> = MutableStateFlow(false)
+    val isButtonEnabled: StateFlow<Boolean> = _isButtonEnabled
 
     fun getThemes() {
         viewModelScope.launch(IO) {
@@ -71,6 +80,14 @@ class ScheduleEditViewModel @Inject constructor(
         }
     }
 
+    fun setScheduleTitle(text: String) {
+        _scheduleTitle.value = text
+    }
+
+    fun setThemeSpinnerSelected(selectedPosition: Int) {
+        _themeSpinnerSelected.value = selectedPosition
+    }
+
     fun setDate(
         year: Int,
         month: Int,
@@ -93,5 +110,10 @@ class ScheduleEditViewModel @Inject constructor(
             hour = hour,
             minute = minute
         )
+    }
+
+    fun checkButtonFlag() {
+        _isButtonEnabled.value = (scheduleTitle.value.isNotBlank()
+                && _themeSpinnerSelected.value != 0)
     }
 }

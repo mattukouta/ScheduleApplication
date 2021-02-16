@@ -6,7 +6,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.core.widget.doOnTextChanged
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -19,7 +21,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.withContext
 import java.util.*
 
-class ScheduleEditFragment : Fragment() {
+class ScheduleEditFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private val viewModel: ScheduleEditViewModel by activityViewModels()
     private var binding: FragmentScheduleEditBinding by autoCleared()
 
@@ -89,6 +91,24 @@ class ScheduleEditFragment : Fragment() {
                 binding.textViewTime.text = "${time.hour}:%0,2d".format(time.minute)
             }
         }
+
+        lifecycleScope.launchWhenStarted {
+            viewModel.scheduleTitle.collect { _ ->
+                viewModel.checkButtonFlag()
+            }
+        }
+
+        lifecycleScope.launchWhenStarted {
+            viewModel.themeSpinnerSelected.collect { _ ->
+                viewModel.checkButtonFlag()
+            }
+        }
+
+        lifecycleScope.launchWhenStarted {
+            viewModel.isButtonEnabled.collect { enabled ->
+                binding.buttonScheduleSave.isEnabled = enabled
+            }
+        }
     }
 
     private fun setPrioritySpinner() {
@@ -151,7 +171,25 @@ class ScheduleEditFragment : Fragment() {
                 },
                 viewModel.time.value
             ).show(parentFragmentManager, null)
-
         }
+
+        binding.textInputScheduleTitle.doOnTextChanged { text, _, _, _ ->
+            viewModel.setScheduleTitle(text.toString())
+        }
+
+        binding.spinnerTheme.onItemSelectedListener = this
+    }
+
+    override fun onItemSelected(
+        parent: AdapterView<*>?,
+        view: View?,
+        position: Int,
+        id: Long
+    ) {
+        viewModel.setThemeSpinnerSelected(position)
+    }
+
+    override fun onNothingSelected(parent: AdapterView<*>?) {
+        // すでに選択済の項目を再度選択した際の処理
     }
 }
