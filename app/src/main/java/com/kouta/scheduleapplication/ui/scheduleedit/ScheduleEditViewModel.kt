@@ -36,11 +36,11 @@ class ScheduleEditViewModel @Inject constructor(
     private var _themeSpinnerSelected: MutableStateFlow<Int> = MutableStateFlow(0)
     val themeSpinnerSelected: StateFlow<Int> = _themeSpinnerSelected
 
-    private var _date: MutableStateFlow<Date> = MutableStateFlow(Date())
-    val date: StateFlow<Date> = _date
+    private var _date: MutableStateFlow<Date?> = MutableStateFlow(null)
+    val date: StateFlow<Date?> = _date
 
-    private var _time: MutableStateFlow<Time> = MutableStateFlow(Time())
-    val time: StateFlow<Time> = _time
+    private var _time: MutableStateFlow<Time?> = MutableStateFlow(null)
+    val time: StateFlow<Time?> = _time
 
     private var _isButtonEnabled: MutableStateFlow<Boolean> = MutableStateFlow(false)
     val isButtonEnabled: StateFlow<Boolean> = _isButtonEnabled

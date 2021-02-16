@@ -13,8 +13,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.kouta.scheduleapplication.R
 import com.kouta.scheduleapplication.databinding.FragmentScheduleEditBinding
+import com.kouta.scheduleapplication.model.Schedule.TimeStamp
+import com.kouta.scheduleapplication.model.Schedule
 import com.kouta.scheduleapplication.util.autoCleared
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
@@ -82,13 +85,13 @@ class ScheduleEditFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
         lifecycleScope.launchWhenStarted {
             viewModel.date.collect { date ->
-                binding.textViewDate.text = "${date.year}年${date.month}月${date.day}日(${date.dayOfWeek})"
+                binding.textViewDate.text = "${date?.year}年${date?.month}月${date?.day}日(${date?.dayOfWeek})"
             }
         }
 
         lifecycleScope.launchWhenStarted {
             viewModel.time.collect { time ->
-                binding.textViewTime.text = "${time.hour}:%0,2d".format(time.minute)
+                binding.textViewTime.text = "${time?.hour}:%0,2d".format(time?.minute)
             }
         }
 
@@ -155,7 +158,7 @@ class ScheduleEditFragment : Fragment(), AdapterView.OnItemSelectedListener {
                         )
                     }
                 },
-                viewModel.date.value
+                viewModel.date.value ?: return@setOnClickListener
             ).show(parentFragmentManager, null)
         }
 
@@ -169,7 +172,7 @@ class ScheduleEditFragment : Fragment(), AdapterView.OnItemSelectedListener {
                         )
                     }
                 },
-                viewModel.time.value
+                viewModel.time.value ?: return@setOnClickListener
             ).show(parentFragmentManager, null)
         }
 
@@ -178,6 +181,23 @@ class ScheduleEditFragment : Fragment(), AdapterView.OnItemSelectedListener {
         }
 
         binding.spinnerTheme.onItemSelectedListener = this
+
+        binding.buttonScheduleSave.setOnClickListener {
+            viewModel.insertSchedule(
+                Schedule(
+                    themeId = viewModel.themes.value[viewModel.themeSpinnerSelected.value - 1].themeId,
+                    title = viewModel.scheduleTitle.value,
+                    deadline = TimeStamp(
+                        date = viewModel.date.value,
+                        time = viewModel.time.value
+                    ),
+                    detail = binding.textInputScheduleDetail.text.toString(),
+                    priority = binding.spinnerPriority.selectedItemPosition
+                )
+            )
+
+            findNavController().navigateUp()
+        }
     }
 
     override fun onItemSelected(

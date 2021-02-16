@@ -11,13 +11,13 @@ data class Schedule(
     val themeId: Int?,
     val title: String,
     @Embedded
-    val deadline: TimeStamp? = null,
+    val deadline: TimeStamp,
     val detail: String,
     val priority: Int = 2
 ) {
     data class TimeStamp(
         @Embedded
-        val date: Date,
+        val date: Date? = null,
         @Embedded
         val time: Time? = null
     ) {
