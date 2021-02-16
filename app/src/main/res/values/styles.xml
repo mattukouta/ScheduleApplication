@@ -49,4 +49,11 @@
 
     </style>
 
+    <style name="MyAppTheme.DatePicker" parent="android:Widget.DatePicker">
+
+    </style>
+
+    <style name="MyAppTheme.TimePicker" parent="ThemeOverlay.MaterialComponents.TimePicker">
+    </style>
+
 </resources>
