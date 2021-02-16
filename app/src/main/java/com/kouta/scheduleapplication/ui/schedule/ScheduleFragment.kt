@@ -18,6 +18,7 @@ import com.kouta.scheduleapplication.model.Theme
 import com.kouta.scheduleapplication.ui.themeaddition.ThemeAdditionDialogListener
 import com.kouta.scheduleapplication.ui.schedule.FloatingAction.allFloatingActionButtonHide
 import com.kouta.scheduleapplication.ui.schedule.FloatingAction.floatingActionButtonAnimation
+import com.kouta.scheduleapplication.ui.themeaddition.ThemeAdditionDialogFragment
 import com.kouta.scheduleapplication.util.autoCleared
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.flow.collect
@@ -85,7 +86,7 @@ class ScheduleFragment : Fragment() {
                     }
 
                     TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
-                        tab.text = themes[position].name
+                        tab.text = themes[position].title
                     }.attach()
                 }
             }
@@ -123,22 +124,15 @@ class ScheduleFragment : Fragment() {
     }
 
     private fun showThemeAdditionDialog() {
-        val action = ScheduleFragmentDirections
-            .actionScheduleFragmentToThemeAdditionDialogFragment(
-                object : ThemeAdditionDialogListener {
-                    override fun onPositiveButtonClick(theme: String) {
-                        updateCurrentItem()
+        ThemeAdditionDialogFragment(
+            object: ThemeAdditionDialogListener{
+                override fun onPositiveButtonClick(theme: String) {
+                    updateCurrentItem()
 
-                        viewModel.insertThemes(Theme(name = theme))
-                    }
-
-                    // ToDo: 処理を把握できていない
-                    override fun describeContents(): Int = 0
-                    override fun writeToParcel(dest: Parcel?, flags: Int) {}
+                    viewModel.insertThemes(Theme(title = theme))
                 }
-            )
-
-        findNavController().navigate(action)
+            }
+        ).show(parentFragmentManager, null)
     }
 
     private fun updateCurrentItem() = viewModel.updateCurrentItem(binding.viewPager.currentItem)

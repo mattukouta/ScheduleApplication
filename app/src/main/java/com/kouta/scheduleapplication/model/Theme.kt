@@ -7,5 +7,5 @@ import androidx.room.PrimaryKey
 data class Theme(
     @PrimaryKey(autoGenerate = true)
     val themeId: Int = 0,
-    val name: String
+    val title: String
 )
