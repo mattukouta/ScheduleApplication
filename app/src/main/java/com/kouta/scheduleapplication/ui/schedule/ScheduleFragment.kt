@@ -66,7 +66,7 @@ class ScheduleFragment : Fragment() {
         Log.d("onStop", "stop")
 
         if (viewModel.isFABShow.value) {
-            viewModel.updateIsFABShow(false)
+            viewModel.setIsFABShow(false)
             allFloatingActionButtonHide(
                 floatingActionButtonViews
             )
@@ -120,7 +120,7 @@ class ScheduleFragment : Fragment() {
             floatingActionButtonViews
         )
 
-        viewModel.updateIsFABShow(!isShow)
+        viewModel.setIsFABShow(!isShow)
     }
 
     private fun showThemeAdditionDialog() {
@@ -135,5 +135,5 @@ class ScheduleFragment : Fragment() {
         ).show(parentFragmentManager, null)
     }
 
-    private fun updateCurrentItem() = viewModel.updateCurrentItem(binding.viewPager.currentItem)
+    private fun updateCurrentItem() = viewModel.setCurrentItem(binding.viewPager.currentItem)
 }

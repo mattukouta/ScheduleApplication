@@ -37,11 +37,11 @@ class ScheduleViewModel @Inject constructor(
         }
     }
 
-    fun updateCurrentItem(currentItem: Int) {
+    fun setCurrentItem(currentItem: Int) {
         _currentItem.value = currentItem
     }
 
-    fun updateIsFABShow(isSelected: Boolean) {
+    fun setIsFABShow(isSelected: Boolean) {
         _isFABShow.value = isSelected
     }
 }
