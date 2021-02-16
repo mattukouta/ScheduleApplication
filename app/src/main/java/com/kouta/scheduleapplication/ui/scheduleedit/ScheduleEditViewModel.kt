@@ -5,6 +5,8 @@ import androidx.lifecycle.viewModelScope
 import com.kouta.scheduleapplication.data.repository.ScheduleRepository
 import com.kouta.scheduleapplication.data.repository.ThemeRepository
 import com.kouta.scheduleapplication.model.Schedule
+import com.kouta.scheduleapplication.model.Schedule.TimeStamp.Date
+import com.kouta.scheduleapplication.model.Schedule.TimeStamp.Time
 import com.kouta.scheduleapplication.model.Theme
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers.IO
@@ -27,6 +29,12 @@ class ScheduleEditViewModel @Inject constructor(
 
     private var _schedules: MutableStateFlow<List<Theme>> = MutableStateFlow(listOf())
     val schedules: StateFlow<List<Theme>> = _schedules
+
+    private var _date: MutableStateFlow<Date> = MutableStateFlow(Date())
+    val date: StateFlow<Date> = _date
+
+    private var _time: MutableStateFlow<Time> = MutableStateFlow(Time())
+    val time: StateFlow<Time> = _time
 
     fun getThemes() {
         viewModelScope.launch(IO) {
@@ -61,5 +69,29 @@ class ScheduleEditViewModel @Inject constructor(
         viewModelScope.launch(IO) {
             scheduleRepository.deleteSchedule(scheduleId)
         }
+    }
+
+    fun setDate(
+        year: Int,
+        month: Int,
+        day: Int,
+        dayOfWeek: String
+    ) {
+        _date.value = Date(
+            year = year,
+            month = month,
+            day = day,
+            dayOfWeek = dayOfWeek
+        )
+    }
+
+    fun setTime(
+        hour: Int,
+        minute: Int
+    ) {
+        _time.value = Time(
+            hour = hour,
+            minute = minute
+        )
     }
 }

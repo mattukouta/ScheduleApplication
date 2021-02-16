@@ -1,12 +1,13 @@
 package com.kouta.scheduleapplication.ui.scheduleedit
 
+import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.app.Dialog
 import android.icu.util.Calendar
 import android.os.Bundle
 import android.widget.DatePicker
 import androidx.fragment.app.DialogFragment
-import java.util.*
+import java.util.Date
 
 class DatePickerDialogFragment(
     private val listener: DatePickerDialogListener
@@ -30,7 +31,29 @@ class DatePickerDialogFragment(
         }
     }
 
+    @SuppressLint("SimpleDateFormat")
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
-        listener.selectedDate(year, month, dayOfMonth)
+        val dayOfWeek = getDayOfWeek(
+            year,
+            month,
+            dayOfMonth
+        )
+
+        listener.selectedDate(year, month + 1, dayOfMonth, dayOfWeek)
+    }
+
+    private fun getDayOfWeek(
+        year: Int,
+        month: Int,
+        dayOfMonth: Int
+    ): Int {
+        val calendar = Calendar.getInstance()
+        calendar.set(
+            year,
+            month,
+            dayOfMonth
+        )
+
+        return calendar.get(Calendar.DAY_OF_WEEK) - 1
     }
 }

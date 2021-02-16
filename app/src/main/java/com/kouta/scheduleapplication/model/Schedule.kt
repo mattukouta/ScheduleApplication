@@ -8,18 +8,29 @@ import androidx.room.PrimaryKey
 data class Schedule(
     @PrimaryKey(autoGenerate = true)
     val scheduleId: Int = 0,
-    val themeId: Int,
+    val themeId: Int?,
     val title: String,
     @Embedded
-    val deadline: TimeStamp,
+    val deadline: TimeStamp? = null,
     val detail: String,
     val priority: Int = 2
 ) {
     data class TimeStamp(
-        val year: Int,
-        val month: Int,
-        val day: Int,
-        val hour: Int?,
-        val minute: Int?
-    )
+        @Embedded
+        val date: Date,
+        @Embedded
+        val time: Time? = null
+    ) {
+        data class Date(
+            val year: Int = 0,
+            val month: Int = 0,
+            val day: Int = 0,
+            val dayOfWeek: String = ""
+        )
+
+        data class Time(
+            val hour: Int = 0,
+            val minute: Int = 0
+        )
+    }
 }

@@ -28,7 +28,7 @@ class TimePickerDialogFragment(
             else -> super.onCreateDialog(savedInstanceState)
         }
     }
-    override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
-        listener.selectedTime(hourOfDay, minute)
+    override fun onTimeSet(view: TimePicker?, hour: Int, minute: Int) {
+        listener.selectedTime(hour, minute)
     }
 }
