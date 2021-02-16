@@ -1,6 +1,7 @@
 package com.kouta.scheduleapplication.ui.main
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -57,8 +58,8 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.controller.value?.addOnDestinationChangedListener { _, destination, _ ->
             when(destination.id) {
-                R.id.scheduleEditFragment -> viewModel.hideBottomNavigation()
-                else -> viewModel.showBottomNavigation()
+                R.id.scheduleEditFragment -> hideBottomNavigation()
+                else -> showBottomNavigation()
             }
         }
 
@@ -67,5 +68,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSupportNavigateUp(): Boolean {
         return viewModel.currentNavController.value?.navigateUp() ?: false
+    }
+
+    private fun hideBottomNavigation() {
+        binding.bottomNavigationView.visibility = View.GONE
+    }
+
+    private fun showBottomNavigation() {
+        binding.bottomNavigationView.visibility = View.VISIBLE
     }
 }
