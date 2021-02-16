@@ -134,7 +134,8 @@ class ScheduleEditFragment : Fragment() {
                             dayOfWeeks[dayOfWeek]
                         )
                     }
-                }
+                },
+                viewModel.date.value
             ).show(parentFragmentManager, null)
         }
 
@@ -147,7 +148,8 @@ class ScheduleEditFragment : Fragment() {
                             minute
                         )
                     }
-                }
+                },
+                viewModel.time.value
             ).show(parentFragmentManager, null)
 
         }

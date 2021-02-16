@@ -7,24 +7,22 @@ import android.icu.util.Calendar
 import android.os.Bundle
 import android.widget.DatePicker
 import androidx.fragment.app.DialogFragment
-import java.util.Date
+import com.kouta.scheduleapplication.model.Schedule.TimeStamp.Date
 
 class DatePickerDialogFragment(
-    private val listener: DatePickerDialogListener
+    private val listener: DatePickerDialogListener,
+    private val date: Date
 ): DialogFragment(), DatePickerDialog.OnDateSetListener {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val calendar = Calendar.getInstance()
-        calendar.timeInMillis = Date().time
-
         val context = context
         return when {
             context != null -> {
                 DatePickerDialog(
                     context,
                     this,
-                    calendar.get(Calendar.YEAR),
-                    calendar.get(Calendar.MONTH),
-                    calendar.get(Calendar.DATE)
+                    date.year,
+                    date.month - 1,
+                    date.day
                 )
             }
             else -> super.onCreateDialog(savedInstanceState)

@@ -2,27 +2,24 @@ package com.kouta.scheduleapplication.ui.scheduleedit
 
 import android.app.Dialog
 import android.app.TimePickerDialog
-import android.icu.util.Calendar
 import android.os.Bundle
 import android.widget.TimePicker
 import androidx.fragment.app.DialogFragment
-import java.util.Date
+import com.kouta.scheduleapplication.model.Schedule.TimeStamp.Time
 
 class TimePickerDialogFragment(
-    private val listener: TimePickerDialogListener
+    private val listener: TimePickerDialogListener,
+    private val time: Time
 ): DialogFragment(), TimePickerDialog.OnTimeSetListener {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val calendar = Calendar.getInstance()
-        calendar.timeInMillis = Date().time
-
         val context = context
         return when {
             context != null -> {
                 TimePickerDialog(
                     context,
                     this,
-                    calendar.get(Calendar.HOUR_OF_DAY),
-                    calendar.get(Calendar.MINUTE),
+                    time.hour,
+                    time.minute,
                     true)
             }
             else -> super.onCreateDialog(savedInstanceState)
