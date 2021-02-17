@@ -1,6 +1,7 @@
 package com.kouta.scheduleapplication.ui.schedulelist
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,6 +39,11 @@ class ScheduleListFragment : Fragment() {
                     layoutManager = LinearLayoutManager(context)
 
                     adapter = ScheduleListAdapter(
+                        object: ScheduleListItemListener{
+                            override fun onClickItem(scheduleId: Int) {
+                                Log.d("checkClick", scheduleId.toString())
+                            }
+                        },
                         viewLifecycleOwner
                     ).also {
                         scheduleListAdapter = it

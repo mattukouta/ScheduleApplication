@@ -8,6 +8,7 @@ import com.kouta.scheduleapplication.databinding.ScheduleListItemBinding
 import com.kouta.scheduleapplication.model.Schedule
 
 class ScheduleListAdapter(
+    private val listener: ScheduleListItemListener,
     private val viewLifecycleOwner: LifecycleOwner
 ): ListAdapter<Schedule, ScheduleListViewHolder>(DiffCallback) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ScheduleListViewHolder {
@@ -18,6 +19,6 @@ class ScheduleListAdapter(
     }
 
     override fun onBindViewHolder(holder: ScheduleListViewHolder, position: Int) {
-        holder.bind(getItem(position), viewLifecycleOwner)
+        holder.bind(getItem(position), listener, viewLifecycleOwner)
     }
 }

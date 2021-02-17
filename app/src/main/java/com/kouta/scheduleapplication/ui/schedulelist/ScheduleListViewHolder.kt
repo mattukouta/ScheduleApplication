@@ -6,10 +6,15 @@ import com.kouta.scheduleapplication.databinding.ScheduleListItemBinding
 import com.kouta.scheduleapplication.model.Schedule
 
 class ScheduleListViewHolder(private val binding: ScheduleListItemBinding): RecyclerView.ViewHolder(binding.root) {
-    fun bind(schedule: Schedule, viewLifecycleOwner: LifecycleOwner) {
+    fun bind(
+        schedule: Schedule,
+        listener: ScheduleListItemListener,
+        viewLifecycleOwner: LifecycleOwner
+    ) {
         binding.run {
             lifecycleOwner = viewLifecycleOwner
             this.schedule = schedule
+            this.listener = listener
 
             executePendingBindings()
         }
