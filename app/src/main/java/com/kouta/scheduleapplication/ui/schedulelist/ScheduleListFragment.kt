@@ -5,30 +5,33 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.kouta.scheduleapplication.R
 import com.kouta.scheduleapplication.databinding.FragmentScheduleListBinding
 import com.kouta.scheduleapplication.util.autoCleared
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 
+@AndroidEntryPoint
 class ScheduleListFragment : Fragment() {
 
-    private val viewModel: ScheduleListViewModel by activityViewModels()
+    private val viewModel: ScheduleListViewModel by viewModels()
     private var binding: FragmentScheduleListBinding by autoCleared()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = DataBindingUtil.inflate(
+
+        binding = FragmentScheduleListBinding.inflate(
             inflater,
-            R.layout.fragment_schedule_list,
             container,
-            false
-        )
+            false)
+            .apply {
+                lifecycleOwner = this@ScheduleListFragment
+            }
 
         return binding.root
     }

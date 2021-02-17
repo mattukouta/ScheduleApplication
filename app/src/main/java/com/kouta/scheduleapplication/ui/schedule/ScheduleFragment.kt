@@ -1,31 +1,31 @@
 package com.kouta.scheduleapplication.ui.schedule
 
 import android.os.Bundle
-import android.os.Parcel
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayoutMediator
 import com.kouta.scheduleapplication.R
 import com.kouta.scheduleapplication.databinding.FragmentScheduleBinding
 import com.kouta.scheduleapplication.model.Theme
-import com.kouta.scheduleapplication.ui.themeaddition.ThemeAdditionDialogListener
 import com.kouta.scheduleapplication.ui.schedule.FloatingAction.allFloatingActionButtonHide
 import com.kouta.scheduleapplication.ui.schedule.FloatingAction.floatingActionButtonAnimation
 import com.kouta.scheduleapplication.ui.themeaddition.ThemeAdditionDialogFragment
+import com.kouta.scheduleapplication.ui.themeaddition.ThemeAdditionDialogListener
 import com.kouta.scheduleapplication.util.autoCleared
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.withContext
 
+@AndroidEntryPoint
 class ScheduleFragment : Fragment() {
-    private val viewModel: ScheduleViewModel by activityViewModels()
+    private val viewModel: ScheduleViewModel by viewModels()
     private var binding: FragmentScheduleBinding by autoCleared()
 
     lateinit var floatingActionButtonViews: List<View>
@@ -35,14 +35,13 @@ class ScheduleFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        binding = DataBindingUtil.inflate(
+        binding = FragmentScheduleBinding.inflate(
             inflater,
-            R.layout.fragment_schedule,
             container,
             false
-        )
-
-        viewModel.getThemes()
+        ).apply {
+            lifecycleOwner = this@ScheduleFragment
+        }
 
         return binding.root
     }
@@ -58,6 +57,8 @@ class ScheduleFragment : Fragment() {
         setClickEvents()
 
         setCollects()
+
+        viewModel.getThemes()
     }
 
     override fun onStop() {
