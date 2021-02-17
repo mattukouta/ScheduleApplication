@@ -17,6 +17,9 @@ interface ScheduleDao {
     @Query("select * from schedule_table where scheduleId=:scheduleId")
     fun getSchedule(scheduleId: Int): Schedule
 
+    @Query("select * from schedule_table where themeId=:themeId")
+    fun getThemeSchedules(themeId: Int): List<Schedule>
+
     @Query("delete from schedule_table")
     fun deleteSchedules()
 

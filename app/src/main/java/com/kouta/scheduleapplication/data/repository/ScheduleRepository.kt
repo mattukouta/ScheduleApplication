@@ -24,6 +24,11 @@ class ScheduleRepository @Inject constructor(
             scheduleDao.getSchedule(scheduleId)
         }
 
+    suspend fun getThemeSchedules(themeId: Int) =
+        withContext(Dispatchers.IO) {
+            scheduleDao.getThemeSchedules(themeId)
+        }
+
     suspend fun deleteSchedules() =
         withContext(Dispatchers.IO) {
             scheduleDao.deleteSchedules()

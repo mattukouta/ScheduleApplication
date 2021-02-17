@@ -29,5 +29,6 @@
 
     <!--  Button  -->
     <string name="schedule_edit_save">保存</string>
+    <string name="schedule_detail">詳細をみる</string>
 
 </resources>
