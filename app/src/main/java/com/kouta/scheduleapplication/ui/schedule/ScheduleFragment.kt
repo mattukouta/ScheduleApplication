@@ -66,8 +66,8 @@ class ScheduleFragment : Fragment() {
 
         Log.d("onStop", "stop")
 
-        if (viewModel.isFABShow.value) {
-            viewModel.setIsFABShow(false)
+        if (viewModel.isFABVisible.value) {
+            viewModel.setIsFABVisible(false)
             allFloatingActionButtonHide(
                 floatingActionButtonViews
             )
@@ -99,20 +99,20 @@ class ScheduleFragment : Fragment() {
             binding.apply {
                 floatingActionButtonSchedule.setOnClickListener {
                     val action = ScheduleFragmentDirections.actionScheduleFragmentToScheduleEditFragment(
-                        "@string/title_addition",
+                        "@string/title_edit",
                         0
                     )
                     findNavController().navigate(action)
-                    updateFloatingActionButton(scheduleViewModel.isFABShow.value)
+                    updateFloatingActionButton(scheduleViewModel.isFABVisible.value)
                 }
 
                 floatingActionButtonTheme.setOnClickListener {
                     showThemeAdditionDialog()
-                    updateFloatingActionButton(scheduleViewModel.isFABShow.value)
+                    updateFloatingActionButton(scheduleViewModel.isFABVisible.value)
                 }
 
                 floatingActionButton.setOnClickListener {
-                    updateFloatingActionButton(scheduleViewModel.isFABShow.value)
+                    updateFloatingActionButton(scheduleViewModel.isFABVisible.value)
                 }
             }
         }
@@ -125,7 +125,7 @@ class ScheduleFragment : Fragment() {
             floatingActionButtonViews
         )
 
-        viewModel.setIsFABShow(!isShow)
+        viewModel.setIsFABVisible(!isShow)
     }
 
     private fun showThemeAdditionDialog() {

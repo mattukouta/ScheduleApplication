@@ -21,8 +21,8 @@ class ScheduleViewModel @Inject constructor(
     private var _currentItem: MutableStateFlow<Int> = MutableStateFlow(0)
     val currentItem: StateFlow<Int> = _currentItem
 
-    private var _isFABShow: MutableStateFlow<Boolean> = MutableStateFlow(false)
-    val isFABShow: StateFlow<Boolean> = _isFABShow
+    private var _isFABVisible: MutableStateFlow<Boolean> = MutableStateFlow(false)
+    val isFABVisible: StateFlow<Boolean> = _isFABVisible
 
     fun getThemes() {
         viewModelScope.launch(IO) {
@@ -41,7 +41,7 @@ class ScheduleViewModel @Inject constructor(
         _currentItem.value = currentItem
     }
 
-    fun setIsFABShow(isSelected: Boolean) {
-        _isFABShow.value = isSelected
+    fun setIsFABVisible(isSelected: Boolean) {
+        _isFABVisible.value = isSelected
     }
 }

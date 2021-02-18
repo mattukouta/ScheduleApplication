@@ -29,13 +29,13 @@ object FloatingAction {
         }
     }
 
-    fun allFloatingActionButtonShow(floatingActionButtonViews: List<View>) {
+    private fun allFloatingActionButtonShow(floatingActionButtonViews: List<View>) {
         floatingActionButtonViews.forEach {
             floatActionButtonShow(it)
         }
     }
 
-    fun floatActionButtonShow(view: View) {
+    private fun floatActionButtonShow(view: View) {
         view.apply {
             visibility = View.VISIBLE
             alpha = 0f
@@ -59,7 +59,7 @@ object FloatingAction {
         }
     }
 
-    fun floatActionButtonHide(view: View) {
+    private fun floatActionButtonHide(view: View) {
         view.apply {
             visibility = View.VISIBLE
             alpha = 1f
