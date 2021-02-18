@@ -25,5 +25,12 @@
         android:id="@+id/scheduleEditFragment"
         android:name="com.kouta.scheduleapplication.ui.scheduleedit.ScheduleEditFragment"
         android:label="@string/title_edit"
-        tools:layout="@layout/fragment_schedule_edit"/>
+        tools:layout="@layout/fragment_schedule_edit">
+        <argument
+            android:name="bar_title"
+            app:argType="string" />
+        <argument
+            android:name="scheduleId"
+            app:argType="integer" />
+    </fragment>
 </navigation>

@@ -8,9 +8,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kouta.scheduleapplication.databinding.FragmentScheduleListBinding
-import com.kouta.scheduleapplication.model.Schedule
+import com.kouta.scheduleapplication.ui.schedule.ScheduleFragmentDirections
 import com.kouta.scheduleapplication.util.Params
 import com.kouta.scheduleapplication.util.autoCleared
 import dagger.hilt.android.AndroidEntryPoint
@@ -18,7 +19,6 @@ import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class ScheduleListFragment : Fragment() {
-
     private val viewModel: ScheduleListViewModel by viewModels()
     private var binding: FragmentScheduleListBinding by autoCleared()
     private lateinit var scheduleListAdapter: ScheduleListAdapter
@@ -41,7 +41,11 @@ class ScheduleListFragment : Fragment() {
                     adapter = ScheduleListAdapter(
                         object: ScheduleListItemListener{
                             override fun onClickItem(scheduleId: Int) {
-                                Log.d("checkClick", scheduleId.toString())
+                                val action = ScheduleFragmentDirections.actionScheduleFragmentToScheduleEditFragment(
+                                    "@string/title_addition",
+                                    0
+                                )
+                                findNavController().navigate(action)
                             }
                         },
                         viewLifecycleOwner

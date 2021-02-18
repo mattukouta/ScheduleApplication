@@ -7,7 +7,8 @@
 
     <!--  AppBarタイトル  -->
     <string name="title_list">予定一覧</string>
-    <string name="title_edit">予定入力</string>
+    <string name="title_addition">予定入力</string>
+    <string name="title_edit">予定編集</string>
     <string name="title_profile">プロフィール</string>
 
     <!--  Dialog  -->
