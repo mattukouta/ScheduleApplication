@@ -13,11 +13,22 @@ class MainViewModel: ViewModel() {
 
     lateinit var controller: LiveData<NavController>
 
+    private var _isBottomNavigationVisible: MutableLiveData<Boolean> = MutableLiveData(true)
+    val isBottomNavigationVisible: LiveData<Boolean> = _isBottomNavigationVisible
+
     fun updateCurrentNavController(currentNavController: LiveData<NavController>) {
         _currentNavController.value = currentNavController.value
     }
 
     fun initController(navController: LiveData<NavController>) {
         controller = navController
+    }
+
+    fun hideBottomNavigation() {
+        _isBottomNavigationVisible.value = false
+    }
+
+    fun showBottomNavigation() {
+        _isBottomNavigationVisible.value = true
     }
 }

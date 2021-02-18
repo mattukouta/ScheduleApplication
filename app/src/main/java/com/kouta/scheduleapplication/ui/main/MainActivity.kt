@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity() {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.lifecycleOwner = this
+        binding.viewModel = viewModel
 
         if (savedInstanceState == null) {
             setupBottomNavigationBar()
@@ -58,8 +59,8 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.controller.value?.addOnDestinationChangedListener { _, destination, _ ->
             when(destination.id) {
-                R.id.scheduleEditFragment -> hideBottomNavigation()
-                else -> showBottomNavigation()
+                R.id.scheduleEditFragment -> viewModel.hideBottomNavigation()
+                else -> viewModel.showBottomNavigation()
             }
         }
 
@@ -68,13 +69,5 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSupportNavigateUp(): Boolean {
         return viewModel.currentNavController.value?.navigateUp() ?: false
-    }
-
-    private fun hideBottomNavigation() {
-        binding.bottomNavigationView.visibility = View.GONE
-    }
-
-    private fun showBottomNavigation() {
-        binding.bottomNavigationView.visibility = View.VISIBLE
     }
 }
