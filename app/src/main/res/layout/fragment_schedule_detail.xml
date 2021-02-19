@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
@@ -7,19 +8,113 @@
             name="viewModel"
             type="com.kouta.scheduleapplication.ui.scheduledetail.ScheduleDetailViewModel" />
     </data>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/text_schedule_title"
+                style="@style/MyAppTheme.TitleText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+                android:gravity="center"
+                android:text="@{viewModel.schedule.title}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="研究"/>
+
+            <TextView
+                android:id="@+id/text_schedule_detail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:text="@{viewModel.schedule.detail}"
+                app:layout_constraintEnd_toEndOf="@+id/text_schedule_title"
+                app:layout_constraintStart_toStartOf="@+id/text_schedule_title"
+                app:layout_constraintTop_toBottomOf="@+id/text_schedule_title"
+                tools:text="システム構築進める" />
+
+            <TextView
+                android:id="@+id/text_schedule_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:setDateText="@{viewModel.schedule.deadline.date}"
+                app:layout_constraintStart_toStartOf="@+id/text_schedule_detail"
+                app:layout_constraintTop_toBottomOf="@+id/text_schedule_detail"
+                tools:text="2021年4月1日(木)" />
+
+            <TextView
+                android:id="@+id/text_schedule_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:setTimeText="@{viewModel.schedule.deadline.time}"
+                app:layout_constraintStart_toEndOf="@id/text_schedule_date"
+                app:layout_constraintTop_toTopOf="@id/text_schedule_date"
+                tools:text="9:30" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/label_schedule_detail_deadline"
+                app:layout_constraintBottom_toBottomOf="@id/text_schedule_time"
+                app:layout_constraintStart_toEndOf="@id/text_schedule_time"
+                app:layout_constraintTop_toTopOf="@id/text_schedule_time" />
+
+            <TextView
+                android:id="@+id/schedule_deadline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toStartOf="@+id/text_schedule_date"
+                app:layout_constraintTop_toBottomOf="@+id/textView6"
+                tools:text="残り14日4時間" />
+
+            <Button
+                android:id="@+id/button_finish"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/schedule_finish"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/schedule_deadline" />
+
+            <Button
+                android:id="@+id/button_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/schedule_edit"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/button_finish" />
+
+            <Button
+                android:id="@+id/button_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="32dp"
+                android:text="@string/schedule_delete"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/button_edit" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </layout>

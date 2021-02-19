@@ -28,9 +28,13 @@
     <string name="label_schedule_edit_theme">テーマ選択</string>
     <string name="label_schedule_edit_priority">優先度選択</string>
     <string name="label_schedule_edit_timestamp">日時選択</string>
+    <string name="label_schedule_detail_deadline">まで</string>
 
     <!--  Button  -->
     <string name="schedule_edit_save">保存</string>
     <string name="schedule_detail">詳細をみる</string>
+    <string name="schedule_finish">予定達成</string>
+    <string name="schedule_edit">予定を編集</string>
+    <string name="schedule_delete">予定を削除</string>
 
 </resources>

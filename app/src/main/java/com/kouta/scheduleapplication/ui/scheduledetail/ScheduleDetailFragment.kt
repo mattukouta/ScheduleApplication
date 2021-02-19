@@ -34,18 +34,20 @@ class ScheduleDetailFragment: Fragment() {
                 viewModel = this@ScheduleDetailFragment.viewModel
             }
 
+        viewModel.getSchedule(safeArgs.scheduleId)
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.button.setOnClickListener {
-            val action = ScheduleDetailFragmentDirections.actionScheduleDetailFragmentToScheduleEditFragment(
-                getString(R.string.title_edit),
-                safeArgs.scheduleId
-            )
-            findNavController().navigate(action)
-        }
+//        binding.button.setOnClickListener {
+//            val action = ScheduleDetailFragmentDirections.actionScheduleDetailFragmentToScheduleEditFragment(
+//                getString(R.string.title_edit),
+//                safeArgs.scheduleId
+//            )
+//            findNavController().navigate(action)
+//        }
     }
 }
