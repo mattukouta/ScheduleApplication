@@ -1,15 +1,15 @@
 package com.kouta.scheduleapplication.data.database
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.kouta.scheduleapplication.model.Schedule
 
 @Dao
 interface ScheduleDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertSchedule(schedule: Schedule)
+
+    @Update
+    fun updateSchedule(schedule: Schedule)
 
     @Query("select * from schedule_table")
     fun getSchedules(): List<Schedule>

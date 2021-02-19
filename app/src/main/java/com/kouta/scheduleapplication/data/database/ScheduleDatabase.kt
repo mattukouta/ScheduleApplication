@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.kouta.scheduleapplication.model.Schedule
 
 @Database(entities = [Schedule::class], version = 1)
-abstract class ScheduleDatabase(): RoomDatabase() {
+abstract class ScheduleDatabase : RoomDatabase() {
     abstract fun scheduleDao(): ScheduleDao
 
     companion object {

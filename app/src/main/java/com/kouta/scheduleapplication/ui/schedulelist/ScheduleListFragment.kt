@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.kouta.scheduleapplication.R
 import com.kouta.scheduleapplication.databinding.FragmentScheduleListBinding
 import com.kouta.scheduleapplication.ui.schedule.ScheduleFragmentDirections
 import com.kouta.scheduleapplication.util.Params
@@ -42,8 +43,8 @@ class ScheduleListFragment : Fragment() {
                         object: ScheduleListItemListener{
                             override fun onClickItem(scheduleId: Int) {
                                 val action = ScheduleFragmentDirections.actionScheduleFragmentToScheduleEditFragment(
-                                    "@string/title_addition",
-                                    0
+                                    getString(R.string.title_edit),
+                                    scheduleId
                                 )
                                 findNavController().navigate(action)
                             }

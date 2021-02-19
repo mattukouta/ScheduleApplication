@@ -4,6 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="viewModel"
+            type="com.kouta.scheduleapplication.ui.scheduleedit.ScheduleEditViewModel" />
+    </data>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -35,6 +41,7 @@
                     android:hint="@string/hint_schedule_title"
                     android:imeOptions="actionSend"
                     android:inputType="text"
+                    android:text="@{viewModel.schedule.title}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -59,6 +66,7 @@
                     android:hint="@string/hint_schedule_detail"
                     android:imeOptions="actionSend"
                     android:inputType="textMultiLine"
+                    android:text="@{viewModel.schedule.detail}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -80,6 +88,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:setItemSelected="@{viewModel.selectThemePosition}"
                 app:layout_constraintEnd_toEndOf="@+id/text_layout_schedule_detail"
                 app:layout_constraintStart_toStartOf="@+id/text_layout_schedule_detail"
                 app:layout_constraintTop_toBottomOf="@+id/text_view_theme"
@@ -101,6 +110,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:setItemSelected="@{viewModel.schedule.priority}"
                 app:layout_constraintEnd_toEndOf="@+id/spinner_theme"
                 app:layout_constraintStart_toStartOf="@+id/spinner_theme"
                 app:layout_constraintTop_toBottomOf="@+id/text_view_priority"
@@ -133,6 +143,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:setDateText="@{viewModel.schedule.deadline.date}"
                     style="@style/MyAppTheme.ContentText"
                     tools:text="2021年2月18日(木)" />
 
@@ -141,6 +152,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:setTimeText="@{viewModel.schedule.deadline.time}"
                     style="@style/MyAppTheme.ContentText"
                     tools:text="16:00" />
             </LinearLayout>
@@ -152,6 +164,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:text="@string/schedule_edit_save"
+                android:enabled="@{viewModel.isButtonEnabled}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linear_layout_timestamp" />

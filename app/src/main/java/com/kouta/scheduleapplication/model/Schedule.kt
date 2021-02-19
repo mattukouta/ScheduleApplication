@@ -8,12 +8,12 @@ import androidx.room.PrimaryKey
 data class Schedule(
     @PrimaryKey(autoGenerate = true)
     val scheduleId: Int = 0,
-    val themeId: Int?,
-    val title: String,
+    val themeId: Int = 0,
+    val title: String = "",
     @Embedded
-    val deadline: TimeStamp,
-    val detail: String,
-    val priority: Int = 2
+    val deadline: TimeStamp? = null,
+    val detail: String = "",
+    val priority: Int = 1
 ) {
     data class TimeStamp(
         @Embedded

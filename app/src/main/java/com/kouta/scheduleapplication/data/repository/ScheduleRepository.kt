@@ -14,6 +14,11 @@ class ScheduleRepository @Inject constructor(
             scheduleDao.insertSchedule(schedule)
         }
 
+    suspend fun updateSchedule(schedule: Schedule) =
+        withContext(Dispatchers.IO) {
+            scheduleDao.updateSchedule(schedule)
+        }
+
     suspend fun getSchedules(): List<Schedule> =
         withContext(Dispatchers.IO) {
             scheduleDao.getSchedules()

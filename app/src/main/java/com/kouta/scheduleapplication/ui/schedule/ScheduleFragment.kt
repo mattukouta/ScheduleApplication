@@ -99,7 +99,7 @@ class ScheduleFragment : Fragment() {
             binding.apply {
                 floatingActionButtonSchedule.setOnClickListener {
                     val action = ScheduleFragmentDirections.actionScheduleFragmentToScheduleEditFragment(
-                        "@string/title_edit",
+                        getString(R.string.title_addition),
                         0
                     )
                     findNavController().navigate(action)
