@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.kouta.scheduleapplication.R
 import com.kouta.scheduleapplication.databinding.FragmentScheduleListBinding
 import com.kouta.scheduleapplication.ui.schedule.ScheduleFragmentDirections
+import com.kouta.scheduleapplication.ui.scheduledetail.ScheduleDetailFragmentDirections
 import com.kouta.scheduleapplication.util.Params
 import com.kouta.scheduleapplication.util.autoCleared
 import dagger.hilt.android.AndroidEntryPoint
@@ -42,10 +43,7 @@ class ScheduleListFragment : Fragment() {
                     adapter = ScheduleListAdapter(
                         object: ScheduleListItemListener{
                             override fun onClickItem(scheduleId: Int) {
-                                val action = ScheduleFragmentDirections.actionScheduleFragmentToScheduleEditFragment(
-                                    getString(R.string.title_edit),
-                                    scheduleId
-                                )
+                                val action = ScheduleFragmentDirections.actionScheduleFragmentToScheduleDetailFragment(scheduleId)
                                 findNavController().navigate(action)
                             }
                         },
