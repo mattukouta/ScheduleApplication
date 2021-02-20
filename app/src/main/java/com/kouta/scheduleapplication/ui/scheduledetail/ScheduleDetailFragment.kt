@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.kouta.scheduleapplication.R
 import com.kouta.scheduleapplication.databinding.FragmentScheduleDetailBinding
 import com.kouta.scheduleapplication.util.autoCleared
 import dagger.hilt.android.AndroidEntryPoint
@@ -42,18 +44,22 @@ class ScheduleDetailFragment: Fragment() {
 
         setObserves()
 
-//        binding.button.setOnClickListener {
-//            val action = ScheduleDetailFragmentDirections.actionScheduleDetailFragmentToScheduleEditFragment(
-//                getString(R.string.title_edit),
-//                safeArgs.scheduleId
-//            )
-//            findNavController().navigate(action)
-//        }
+        setOnClickEvents()
     }
 
     private fun setObserves() {
         viewModel.schedule.observe(viewLifecycleOwner, { schedule ->
             schedule.deadline?.let {  viewModel.setDeadline(it) }
         })
+    }
+
+    private fun setOnClickEvents(){
+        binding.buttonEdit.setOnClickListener {
+            val action = ScheduleDetailFragmentDirections.actionScheduleDetailFragmentToScheduleEditFragment(
+                getString(R.string.title_edit),
+                safeArgs.scheduleId
+            )
+            findNavController().navigate(action)
+        }
     }
 }
